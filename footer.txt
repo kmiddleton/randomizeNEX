@@ -1,0 +1,20 @@
+;
+END;
+
+BEGIN mrbayes;
+
+  mcmcp Ngen=2000000 Samplefreq=100;
+	
+	[Partition the characters]
+	charset dental = 1-30;
+	charset other = 31-255;
+	
+	[Set up the partition, make it the working partition]
+	partition mypartition = 2: dental, other;
+	set partition = mypartition; 
+	
+	unlink brlen=(all);
+	lset rates=gamma;
+	unlink shape=(all);
+
+END;
